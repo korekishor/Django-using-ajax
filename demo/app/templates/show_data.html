@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=,, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body style="background-color: rgb(170, 184, 188);">
+
+    <h1 style="border-radius: 12;">Extracted data from dataframe </h1>
+    <div class="row">
+        <div class="col-sm-4">
+            <form method="GET">
+                <input type="text" id="myTextBox2" placeholder="Server">
+            </form><br>
+        </div>
+        <div class="col-sm-4">
+            <form method="GET">
+                <input type="text" id="myTextBox" placeholder="Subclient">
+            </form><br>
+        </div>
+        <div class="col-sm-4">
+            <form method="GET">
+                <input type="text" id="myTextBox1" placeholder="Failure Reason">
+            </form><br>
+        </div>
+    </div>
+
+    <table border="1" style="border:solid;" id="dtBasicExample" class="table table-striped table-bordered table-sm"
+        cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Job ID</th>
+                <th>Server</th>
+                <th>Agent</th>
+                <th>BackupSet</th>
+                <th>Subclient</th>
+                <th>Backup Type</th>
+                <th>Start Time</th>
+                <th>Job status</th>
+                <th>MediaAgent</th>
+                <th>Failure Reason</th>
+                <th>Virtualization Client</th>
+            </tr>
+        </thead>
+
+        <tbody id="tbody">
+        </tbody>
+    </table>
+
+</body>
+<script>
+
+    output = "",
+        $.ajax({
+            url: 'hello',
+            type: 'GET',
+            success: function (ress) {
+                data = ress['data']
+                console.log(ress)
+
+                output = ""
+                for (i = 0; i < data.length; i++) {
+                    output += "<tr><td>" + data[i].Job_ID + "</td><td>" + data[i].Server + "</td><td>" + data[i].Agent + "</td><td>" + data[i].BackupSet + "</td><td>" + data[i].Subclient + "</td><td>" + data[i].Backup_Type
+                        + "</td><td>" + data[i].Backup_Type + "</td><td>" + data[i].Start_Time + "</td><td>" + "</td><td>" + data[i].MediaAgent + data[i].Job_status + "</td><td>" + data[i].Virtualization_Client
+                }
+                $("#tbody").html(output);
+            },
+            failure: function (data) {
+                alert('Got an error dude');
+            }
+        });
+
+
+    $("#myTextBox").on("change paste keyup", function () {
+        var search_content = $(this).val();
+        output = "";
+        console.log(search_content)
+        $.ajax({
+            type: 'GET',
+            url: "{% url 'aj' %}",
+            data: { "search_content": search_content },
+
+            success: function (ress) {
+                console.log(ress)
+                data = ress['data']
+                console.log(ress)
+                output = ""
+
+                for (i = 0; i < data.length; i++) {
+                    output += "<tr><td>" + data[i].Job_ID + "</td><td>" + data[i].Server + "</td><td>" + data[i].Agent + "</td><td>" + data[i].BackupSet + "</td><td>" + data[i].Subclient + "</td><td>" + data[i].Backup_Type
+                        + "</td><td>" + data[i].Backup_Type + "</td><td>" + data[i].Start_Time + "</td><td>" + "</td><td>" + data[i].MediaAgent + data[i].Job_status + "</td><td>" + data[i].Virtualization_Client
+                }
+                $("#tbody").html(output);
+            },
+            failure: function (data) {
+                alert('Got an error dude');
+            }
+        })
+    })
+
+    $("#myTextBox1").on("change paste keyup", function () {
+        var search_content = $(this).val();
+        output = "";
+        console.log(search_content)
+        $.ajax({
+            type: 'GET',
+            url: "{% url 'aj1' %}",
+            data: { "search_content": search_content },
+
+            success: function (ress) {
+                console.log(ress)
+                data = ress['data']
+                console.log(ress)
+                output = ""
+
+                for (i = 0; i < data.length; i++) {
+                    output += "<tr><td>" + data[i].Job_ID + "</td><td>" + data[i].Server + "</td><td>" + data[i].Agent + "</td><td>" + data[i].BackupSet + "</td><td>" + data[i].Subclient + "</td><td>" + data[i].Backup_Type
+                        + "</td><td>" + data[i].Backup_Type + "</td><td>" + data[i].Start_Time + "</td><td>" + "</td><td>" + data[i].MediaAgent + data[i].Job_status + "</td><td>" + data[i].Virtualization_Client
+                }
+                $("#tbody").html(output);
+            },
+            failure: function (data) {
+                alert('Got an error dude');
+            }
+        })
+    })
+
+    $("#myTextBox2").on("change paste keyup", function () {
+        var search_content = $(this).val();
+        output = "";
+        console.log(search_content)
+        $.ajax({
+            type: 'GET',
+            url: "{% url 'aj2' %}",
+            data: { "search_content": search_content },
+
+            success: function (ress) {
+                console.log(ress)
+                data = ress['data']
+                console.log(ress)
+                output = ""
+
+                for (i = 0; i < data.length; i++) {
+                    output += "<tr><td>" + data[i].Job_ID + "</td><td>" + data[i].Server + "</td><td>" + data[i].Agent + "</td><td>" + data[i].BackupSet + "</td><td>" + data[i].Subclient + "</td><td>" + data[i].Backup_Type
+                        + "</td><td>" + data[i].Backup_Type + "</td><td>" + data[i].Start_Time + "</td><td>" + "</td><td>" + data[i].MediaAgent + data[i].Job_status + "</td><td>" + data[i].Virtualization_Client
+                }
+                $("#tbody").html(output);
+            },
+            failure: function (data) {
+                alert('Got an error dude');
+            }
+        })
+    })
+
+
+</script>
+
+</html>
