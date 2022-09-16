@@ -18,9 +18,10 @@ from django.urls import path,include
 from app import views
 urlpatterns = [
     path('',views.home,name="home"),
-    path('aj',views.aj,name="aj"),
-    path('aj1',views.aj1,name="aj1"),
-    path('aj2',views.aj2,name="aj2"),
+    # path('aj',views.aj,name="aj"),
+    # path('aj1',views.aj1,name="aj1"),
+    # path('aj2',views.aj2,name="aj2"),
 
-    path('hello',views.hello,name="hello")
+    # path('hello',views.hello,name="hello"),
+    path('auto',views.auto,name="auto")
 ]
