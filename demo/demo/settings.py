@@ -74,13 +74,26 @@ WSGI_APPLICATION = 'demo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'cisco-db-instance-kk',
+        'USER': 'root',
+        'PASSWORD': 'cisco-db-instance-kk',
+        'HOST': 'cisco-db-instance-kk.czyuq0wca34e.eu-north-1.rds.amazonaws.com',  # Leave empty if using localhost
+        'PORT': '1433',                     # Default port for MSSQL is usually 1433
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',  # Use appropriate ODBC driver
+        }, 
+    },
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
