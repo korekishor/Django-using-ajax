@@ -4,7 +4,21 @@ from django.http import JsonResponse
 from nltk.tokenize import word_tokenize
 import json
 import requests as r
+import pyodbc
 # Create your views here.
+server = 'cisco-db-instance-kk.czyuq0wca34e.eu-north-1.rds.amazonaws.com'
+database = 'cisco-db-instance-kk'
+username = 'root'
+password = 'cisco-db-instance-kk'
+
+cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};\
+                      SERVER='+server+';\
+                      UID='+username+';\
+                      PWD='+ password)
+print("_______________")
+
+cursor = cnxn.cursor()
+print("_______________",cursor)
 
 def auto(request):
     if request.method == "GET":
